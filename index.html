@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>رِواق | RIWAQ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+  <div class="logo">
+    <span class="logo-icon">📖</span>
+    <div>
+      <strong>رِواق</strong>
+      <small>RIWAQ</small>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+    <a href="#books" data-ar="الكتب" data-en="Books">الكتب</a>
+    <a href="#curriculum" data-ar="المناهج" data-en="Curricula">المناهج</a>
+    <a href="#free" data-ar="مجاني" data-en="Free">مجاني</a>
+    <a href="#paid" data-ar="مدفوع" data-en="Paid">مدفوع</a>
+  </nav>
+
+  <div class="nav-actions">
+    <button id="languageBtn">EN</button>
+    <button class="notification">🔔<span>3</span></button>
+    <button class="profile">👤</button>
+  </div>
+
+</header>
+
+
+<main>
+
+<section id="home" class="hero">
+
+  <div class="hero-content">
+
+    <span class="welcome"
+      data-ar="مرحبًا بك في رِواق"
+      data-en="Welcome to RIWAQ">
+      مرحبًا بك في رِواق
+    </span>
+
+    <h1
+      data-ar="اكتشف كتابك القادم"
+      data-en="Discover Your Next Book">
+      اكتشف كتابك القادم
+    </h1>
+
+    <p
+      data-ar="مكتبة رقمية تجمع الكتب التعليمية والثقافية والمناهج المحلية والعالمية."
+      data-en="A digital library for educational, cultural, local and international curricula.">
+      مكتبة رقمية تجمع الكتب التعليمية والثقافية والمناهج المحلية والعالمية.
+    </p>
+
+    <div class="search-box">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="ابحث عن كتاب أو مؤلف..."
+      >
+      <button onclick="searchBooks()">🔍</button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="categories">
+
+  <h2 data-ar="استكشف الأقسام" data-en="Explore Categories">
+    استكشف الأقسام
+  </h2>
+
+  <div class="category-grid">
+
+    <button onclick="filterCategory('all')">
+      📚
+      <span data-ar="جميع الكتب" data-en="All Books">جميع الكتب</span>
+    </button>
+
+    <button onclick="filterCategory('free')">
+      🆓
+      <span data-ar="كتب مجانية" data-en="Free Books">كتب مجانية</span>
+    </button>
+
+    <button onclick="filterCategory('paid')">
+      💎
+      <span data-ar="كتب مدفوعة" data-en="Paid Books">كتب مدفوعة</span>
+    </button>
+
+    <button>
+      🌍
+      <span data-ar="المناهج" data-en="Curricula">المناهج</span>
+    </button>
+
+    <button>
+      🎓
+      <span data-ar="تعليمي" data-en="Education">تعليمي</span>
+    </button>
+
+    <button>
+      📖
+      <span data-ar="روايات وقصص" data-en="Stories">روايات وقصص</span>
+    </button>
+
+  </div>
+
+</section>
+
+
+<section id="books" class="books-section">
+
+  <div class="section-title">
+
+    <div>
+      <h2 data-ar="الكتب المميزة" data-en="Featured Books">
+        الكتب المميزة
+      </h2>
+
+      <p data-ar="كتب مختارة من مكتبة رِواق"
+         data-en="Selected books from RIWAQ">
+        كتب مختارة من مكتبة رِواق
+      </p>
+    </div>
+
+    <button onclick="filterCategory('all')" class="view-all"
+      data-ar="عرض الكل"
+      data-en="View All">
+      عرض الكل
+    </button>
+
+  </div>
+
+
+  <div id="booksGrid" class="books-grid">
+
+    <article class="book-card" data-category="paid">
+
+      <div class="book-cover cover-one">
+        <span>MATHEMATICS</span>
+        <strong>GRADE 6</strong>
+      </div>
+
+      <div class="book-info">
+
+        <span class="tag paid"
+          data-ar="مدفوع"
+          data-en="Paid">
+          مدفوع
+        </span>
+
+        <h3>Mathematics Grade 6</h3>
+
+        <p>Ahmed Mohamed</p>
+
+        <div class="book-meta">
+          <span>⭐ 4.8</span>
+          <strong>$5.00</strong>
+        </div>
+
+        <button class="book-button"
+          onclick="openBook('Mathematics Grade 6')"
+          data-ar="عرض الكتاب"
+          data-en="View Book">
+          عرض الكتاب
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <article class="book-card" data-category="free">
+
+      <div class="book-cover cover-two">
+        <span>ENGLISH</span>
+        <strong>BASICS</strong>
+      </div>
+
+      <div class="book-info">
+
+        <span class="tag free"
+          data-ar="مجاني"
+          data-en="Free">
+          مجاني
+        </span>
+
+        <h3>English Basics</h3>
+
+        <p>Sara Ali</p>
+
+        <div class="book-meta">
+          <span>⭐ 4.7</span>
+          <strong>$0.00</strong>
+        </div>
+
+        <button class="book-button"
+          onclick="openBook('English Basics')"
+          data-ar="تحميل مجاني"
+          data-en="Free Download">
+          تحميل مجاني
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <article class="book-card" data-category="paid">
+
+      <div class="book-cover cover-three">
+        <span>PHYSICS</span>
+        <strong>LEVEL 1</strong>
+      </div>
+
+      <div class="book-info">
+
+        <span class="tag paid"
+          data-ar="مدفوع"
+          data-en="Paid">
+          مدفوع
+        </span>
+
+        <h3>Physics Level 1</h3>
+
+        <p>Ali Hassan</p>
+
+        <div class="book-meta">
+          <span>⭐ 4.9</span>
+          <strong>$10.00</strong>
+        </div>
+
+        <button class="book-button"
+          onclick="openBook('Physics Level 1')"
+          data-ar="عرض الكتاب"
+          data-en="View Book">
+          عرض الكتاب
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <article class="book-card" data-category="free">
+
+      <div class="book-cover cover-four">
+        <span>CHILDREN</span>
+        <strong>STORIES</strong>
+      </div>
+
+      <div class="book-info">
+
+        <span class="tag free"
+          data-ar="مجاني"
+          data-en="Free">
+          مجاني
+        </span>
+
+        <h3>Children Stories</h3>
+
+        <p>RIWAQ Library</p>
+
+        <div class="book-meta">
+          <span>⭐ 4.6</span>
+          <strong>$0.00</strong>
+        </div>
+
+        <button class="book-button"
+          onclick="openBook('Children Stories')"
+          data-ar="تحميل مجاني"
+          data-en="Free Download">
+          تحميل مجاني
+        </button>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<section id="curriculum" class="curriculum">
+
+  <h2 data-ar="المناهج المحلية والعالمية"
+      data-en="Local & International Curricula">
+    المناهج المحلية والعالمية
+  </h2>
+
+  <p data-ar="ابحث عن الكتب حسب الدولة والمنهج والإصدار والصف والمادة."
+     data-en="Find books by country, curriculum, edition, grade and subject.">
+    ابحث عن الكتب حسب الدولة والمنهج والإصدار والصف والمادة.
+  </p>
+
+  <div class="curriculum-grid">
+
+    <div>🇸🇩 <strong>Sudanese Curriculum</strong></div>
+    <div>🇪🇬 <strong>Egyptian Curriculum</strong></div>
+    <div>🇬🇧 <strong>British Curriculum</strong></div>
+    <div>🇺🇸 <strong>American Curriculum</strong></div>
+    <div>🌐 <strong>IB Curriculum</strong></div>
+    <div>🌍 <strong>Other Curricula</strong></div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div class="footer-logo">
+    📖 <strong>رِواق | RIWAQ</strong>
+  </div>
+
+  <p>
+    © 2026 RIWAQ — Your Digital Library of Knowledge
+  </p>
+
+</footer>
+
+
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
