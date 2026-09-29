@@ -1,103 +1,168 @@
 let currentLanguage = "ar";
 
 const languageBtn = document.getElementById("languageBtn");
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+const books = document.querySelectorAll(".book-card");
+const toast = document.getElementById("toast");
+
+
+function updateLanguage() {
+
+    document.documentElement.lang = currentLanguage;
+    document.documentElement.dir =
+        currentLanguage === "ar" ? "rtl" : "ltr";
+
+    document.querySelectorAll("[data-ar]").forEach(element => {
+
+        element.textContent =
+            currentLanguage === "ar"
+                ? element.dataset.ar
+                : element.dataset.en;
+
+    });
+
+    searchInput.placeholder =
+        currentLanguage === "ar"
+            ? searchInput.dataset.placeholderAr
+            : searchInput.dataset.placeholderEn;
+
+    languageBtn.textContent =
+        currentLanguage === "ar"
+            ? "English"
+            : "العربية";
+}
+
 
 languageBtn.addEventListener("click", () => {
 
-  currentLanguage = currentLanguage === "ar" ? "en" : "ar";
+    currentLanguage =
+        currentLanguage === "ar" ? "en" : "ar";
 
-  document.documentElement.lang = currentLanguage;
-  document.documentElement.dir =
-    currentLanguage === "ar" ? "rtl" : "ltr";
+    updateLanguage();
 
-  languageBtn.textContent =
-    currentLanguage === "ar" ? "EN" : "عربي";
-
-  document.querySelectorAll("[data-ar]").forEach(element => {
-
-    element.textContent =
-      currentLanguage === "ar"
-        ? element.dataset.ar
-        : element.dataset.en;
-
-  });
-
-  const input = document.getElementById("searchInput");
-
-  input.placeholder =
-    currentLanguage === "ar"
-      ? "ابحث عن كتاب أو مؤلف..."
-      : "Search for a book or author...";
 });
 
 
-function filterCategory(category) {
+function showToast(message) {
 
-  const cards = document.querySelectorAll(".book-card");
+    toast.textContent = message;
+    toast.classList.add("show");
 
-  cards.forEach(card => {
-
-    if (category === "all") {
-      card.style.display = "";
-      return;
-    }
-
-    card.style.display =
-      card.dataset.category === category
-        ? ""
-        : "none";
-  });
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2200);
 }
 
 
 function searchBooks() {
 
-  const value =
-    document.getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
+    const query =
+        searchInput.value.trim().toLowerCase();
 
-  const cards = document.querySelectorAll(".book-card");
+    let found = false;
 
-  cards.forEach(card => {
+    books.forEach(book => {
 
-    const text =
-      card.textContent.toLowerCase();
+        const titleAr =
+            book.dataset.title.toLowerCase();
 
-    card.style.display =
-      text.includes(value) ? "" : "none";
+        const titleEn =
+            book.dataset.titleEn.toLowerCase();
 
-  });
+        if (
+            query === "" ||
+            titleAr.includes(query) ||
+            titleEn.includes(query)
+        ) {
+            book.style.display = "";
+            found = true;
+        } else {
+            book.style.display = "none";
+        }
 
-  showToast(
-    currentLanguage === "ar"
-      ? "تم تنفيذ البحث"
-      : "Search completed"
-  );
+    });
+
+    if (!found) {
+
+        showToast(
+            currentLanguage === "ar"
+                ? "لم يتم العثور على كتاب"
+                : "No books found"
+        );
+
+    }
 }
 
 
-function openBook(bookName) {
+searchBtn.addEventListener("click", searchBooks);
 
-  showToast(
-    currentLanguage === "ar"
-      ? `تم اختيار: ${bookName}`
-      : `Selected: ${bookName}`
-  );
+searchInput.addEventListener("keydown", event => {
 
-}
+    if (event.key === "Enter") {
+        searchBooks();
+    }
+
+});
 
 
-function showToast(message) {
+document.querySelectorAll(".quick-card").forEach(button => {
 
-  const toast = document.getElementById("toast");
+    button.addEventListener("click", () => {
 
-  toast.textContent = message;
-  toast.style.display = "block";
+        const filter = button.dataset.filter;
 
-  setTimeout(() => {
-    toast.style.display = "none";
-  }, 2500);
+        books.forEach(book => {
 
-}
+            if (filter === "all") {
+                book.style.display = "";
+            }
+
+            else if (filter === "free") {
+                book.style.display =
+                    book.dataset.type === "free"
+                        ? ""
+                        : "none";
+            }
+
+            else if (filter === "paid") {
+                book.style.display =
+                    book.dataset.type === "paid"
+                        ? ""
+                        : "none";
+            }
+
+            else if (filter === "new") {
+                book.style.display =
+                    book.dataset.type === "new"
+                        ? ""
+                        : "none";
+            }
+
+        });
+
+        document
+            .getElementById("books")
+            .scrollIntoView({ behavior: "smooth" });
+
+    });
+
+});
+
+
+document.querySelectorAll(".book-card button").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        showToast(
+            currentLanguage === "ar"
+                ? "صفحة الكتاب ستتم إضافتها قريبًا 📖"
+                : "Book page coming soon 📖"
+        );
+
+    });
+
+});
+
+
+updateLanguage();
