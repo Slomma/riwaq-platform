@@ -1,5 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                    <button data-ar="عرض الكتاب"
-                            data-en="View Book">
-                        عرض الكتاب
-                    </button>
+    <title>رِواق | تفاصيل الكتاب</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="book-page-body">
+
+<header class="top-header">
+
+    <div class="logo">
+        📖 <strong>رِواق</strong>
+        <span>| RIWAQ</span>
+    </div>
+
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="index.html#books">الكتب</a>
+        <a href="index.html#categories">التصنيفات</a>
+    </nav>
+
+    <button id="languageBtn" class="language-btn">
+        English
+    </button>
+
+</header>
+
+
+<main class="book-page">
+
+    <a href="index.html" class="back-home">
+        ← العودة إلى المكتبة
+    </a>
+
+
+    <section id="bookDetails" class="book-details">
+
+        <div class="book-loading">
+            جاري تحميل الكتاب...
+        </div>
+
+    </section>
+
+
+    <section class="similar-books">
+
+        <h2 data-ar="كتب قد تعجبك" data-en="Books You May Like">
+            كتب قد تعجبك
+        </h2>
+
+        <div class="books-grid">
+
+            <a href="book.html?id=math-basics" class="similar-book">
+                ➗
+                <span>أساسيات الرياضيات</span>
+            </a>
+
+            <a href="book.html?id=modern-physics" class="similar-book">
+                ⚛️
+                <span>الفيزياء الحديثة</span>
+            </a>
+
+            <a href="book.html?id=learn-programming" class="similar-book">
+                💻
+                <span>تعلم البرمجة</span>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 رِواق | RIWAQ
+    </p>
+
+    <p>
+        مكتبتك الرقمية للمعرفة
+    </p>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
